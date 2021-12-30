@@ -11,6 +11,7 @@ import HeroImage from './HeroImage';
 import Grid from './Grid';
 import Thumb from './Thumb';
 import Spinner from './Spinner';
+import SearchBar from './SearchBar';
 
 // Hook
 import { useHomeFetch } from '../hooks/useHomeFetch';
@@ -32,6 +33,7 @@ const Home = () => {
           text={state.results[0].overview}
         />
       ) : null}
+      <SearchBar />
       <Grid header='Popular Movies'>
         {state.results.map(({ title, id, poster_path }) => (
           <Thumb
