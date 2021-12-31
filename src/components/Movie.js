@@ -8,6 +8,7 @@ import Spinner from './Spinner';
 import BreadCrumb from './BreadCrumb';
 import MovieInfo from './MovieInfo';
 import MovieInfoBar from './MovieInfoBar';
+import Actor from './Actor';
 // Hook
 import { useMovieFetch } from '../hooks/useMovieFetch';
 // Image
@@ -17,7 +18,7 @@ const Movie = () => {
   const { movieId } = useParams();
 
   const { state: movie, loading, error } = useMovieFetch(movieId);
-  const { original_title, runtime, budget, revenue } = movie;
+  const { original_title, runtime, budget, revenue, actors } = movie;
 
   if (loading) return <Spinner />;
   if (error) return <div>Someting went wrong...</div>;
@@ -27,6 +28,20 @@ const Movie = () => {
       <BreadCrumb movieTitle={original_title} />
       <MovieInfo movie={movie} />
       <MovieInfoBar time={runtime} budget={budget} revenue={revenue} />
+      <Grid header='Actors'>
+        {actors.map((actor) => (
+          <Actor
+            key={actor.credit_id}
+            name={actor.name}
+            character={actor.character}
+            imageUrl={
+              actor.profil_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profil_path}`
+                : NoImage
+            }
+          />
+        ))}
+      </Grid>
     </>
   );
 };
