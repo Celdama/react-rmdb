@@ -35,7 +35,7 @@ const MovieInfo = ({ movie }) => {
           <h3>PLOT</h3>
           <p>{overview}</p>
 
-          <div className='rating-director'>
+          <div className='rating-directors'>
             <div>
               <h3>RATING</h3>
               <div className='score'>{vote_average}</div>
