@@ -20,6 +20,8 @@ const Movie = () => {
   const { state: movie, loading, error } = useMovieFetch(movieId);
   const { original_title, runtime, budget, revenue, actors } = movie;
 
+  console.log(actors);
+
   if (loading) return <Spinner />;
   if (error) return <div>Someting went wrong...</div>;
 
@@ -35,8 +37,8 @@ const Movie = () => {
             name={actor.name}
             character={actor.character}
             imageUrl={
-              actor.profil_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profil_path}`
+              actor.profile_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
                 : NoImage
             }
           />
